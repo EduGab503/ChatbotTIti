@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Titi - Chatbot UWU</title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<!-- Hero Section con Logo -->
+<div class="hero-section">
+    <div class="overlay"></div>
+    <center>
+    <img src="images/titi_logo.png" alt="Logo de Titi" class="logo floating">
+    <p class="tagline">"El amigo de tu corazón digital 💖"</p> </center>
+</div>
+
+<!-- Bienvenida animada -->
+<div class="intro-text animated-text" id="introText">
+    ¡HOLA! Soy <strong>Titi</strong>, tu Chatbot UWU 🌸<br>
+    Soy chiquito, suave y un poquito curioso... pero soy amigo de tu lindo corazón.<br>
+    ¿Cómo te sientes hoy? Feliz, triste, enojado... o tal vez tienes hambre? >(^_^)><br>
+    ¡Siempre estaré aquí para ti!
+</div>
+
+<!-- Botón global de voz -->
+<button id="toggleVoiceBtn">🔊 Activar Voz</button>
+
+<!-- Menú de Palabras Clave (Izquierda) -->
+<div id="menuPalabrasBtn" class="menu-palabras-btn">🔖 Palabras Clave</div>
+<div id="menuPalabrasContenido" class="menu-palabras-contenido">
+    <h4>🔹 Palabras que reconoce Titi</h4>
+    <ul id="listaPalabras"></ul>
+</div>
+
+<!-- Chat -->
+<div class="chat-container slide-in">
+    <div class="chat-header">💬 Titi - Tu ChatBot UWU</div>
+    <div id="chat-box"></div>
+    <div class="input-group">
+        <input type="text" id="userInput" placeholder="Escribe algo... uwu">
+        <button onclick="sendMessage()">Enviar</button>
+    </div>
+</div>
+
+<!-- Botón de Historias Completadas (Derecha abajo) -->
+<div id="historiasCompletadasBtn" class="historias-btn">📖 Historias</div>
+<div id="historiasCompletadasMenu" class="historias-menu">
+    <h4>Historias Completadas:</h4>
+    <ul id="historiasList"></ul>
+</div>
+
+<!-- Modal del juego visual: Adivina el número -->
+<div id="modalJuego" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.6); z-index:2000; align-items:center; justify-content:center;">
+  <div style="background:#fff; padding:30px; border-radius:12px; text-align:center; min-width:250px; position:relative;">
+    <button id="cerrarJuego" style="position:absolute; top:10px; right:10px; background:#e57373; color:#fff; border:none; border-radius:50%; width:30px; height:30px; cursor:pointer;" aria-label="Cerrar juego">✖</button>
+    <h2>🎲 Adivina el número</h2>
+    <p>Elige un número entre 1 y 10:</p>
+    <input type="number" id="inputNumero" min="1" max="10" style="width:60px; text-align:center;" aria-label="Número a adivinar">
+    <button id="btnAdivinar" style="margin-left:10px;" aria-label="Adivinar número">Adivinar</button>
+    <div id="resultadoJuego" style="margin-top:15px; font-weight:bold;"></div>
+  </div>
+</div>
+
+<!-- Modal del Memorama -->
+<div id="modalMemorama" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.6); z-index:2000; align-items:center; justify-content:center;">
+  <div style="background:#fff; padding:30px; border-radius:12px; text-align:center; min-width:300px; position:relative;">
+    <button id="cerrarMemorama" style="position:absolute; top:10px; right:10px; background:#e57373; color:#fff; border:none; border-radius:50%; width:30px; height:30px; cursor:pointer;" aria-label="Cerrar juego">✖</button>
+    <h2>🧠 Memorama de Emojis</h2>
+    <div id="memoramaTablero" style="display:grid; grid-template-columns:repeat(4,60px); gap:10px; justify-content:center; margin-top:15px;"></div>
+    <div id="memoramaResultado" style="margin-top:15px; font-weight:bold;"></div>
+  </div>
+</div>
+
+<!-- Modal del juego "¿En qué estoy pensando?" -->
+<div id="modalEnQuePensando" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.6); z-index:2000; align-items:center; justify-content:center;">
+  <div style="background:#fff; padding:30px; border-radius:12px; text-align:center; min-width:250px; position:relative;">
+    <button id="cerrarEnQuePensando" style="position:absolute; top:10px; right:10px; background:#e57373; color:#fff; border:none; border-radius:50%; width:30px; height:30px; cursor:pointer;" aria-label="Cerrar juego">✖</button>
+    <h2>🤔 ¿En qué estoy pensando?</h2>
+    <p id="resultadoObjeto" style="margin:15px 0; font-weight:bold;"></p>
+    <input type="text" id="inputObjeto" style="width:150px; padding:8px; text-align:center;" aria-label="Objeto a adivinar">
+    <button id="btnAdivinarObjeto" style="margin-left:10px; padding:8px 15px;" aria-label="Adivinar objeto">Adivinar</button>
+  </div>
+</div>
+
+<!-- Modal del juego "Completar Frase" -->
+<div id="modalCompletarFrase" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.6); z-index:2000; align-items:center; justify-content:center;">
+  <div style="background:#fff; padding:30px; border-radius:12px; text-align:center; min-width:250px; position:relative;">
+    <button id="cerrarCompletarFrase" style="position:absolute; top:10px; right:10px; background:#e57373; color:#fff; border:none; border-radius:50%; width:30px; height:30px; cursor:pointer;" aria-label="Cerrar juego">✖</button>
+    <h2>🧩 Completar Frase</h2>
+    <p id="fraseMostrada" style="font-size:1.2em; margin:15px 0; letter-spacing: 2px;"></p>
+    <p id="infoFrase" style="margin:10px 0;"></p>
+    <input type="text" id="inputLetra" maxlength="1" style="width:40px; padding:8px; text-align:center; font-size: 1.2em;" aria-label="Letra a probar">
+    <button id="btnProbarLetra" style="margin-left:10px; padding:8px 15px;" aria-label="Probar letra">Probar</button>
+    <div id="resultadoFrase" style="margin-top:15px; font-weight:bold;"></div>
+  </div>
+</div>
+
+<!-- FONDOS -->
+<div id="Fondos">
+  <p> Elige un fondo para Titi UwU:</p>
+  <button onclick="cambiarFondo('images/fondo2.jpg')">
+  Fondo 2</button>
+  <button onclick="cambiarFondo('images/fondo3.jpg')">
+  Fondo 3</button>
+  <button onclick="cambiarFondo('images/fondo4.jpg')">
+  Fondo 4</button>
+</div>
+ 
+<div class="esquina-inferior-izquierda">
+  ¡HOlA desde la ezquina!
+</div>
+
+<style>
+.esquina-inferior-izquierda {
+ position: fixed; /* Corregido typo */
+ bottom: 10px;
+ left: 10px;
+ padding: 10px;
+ border-radius: 10px;
+ font-weight: bold;
+}
+</style>
+
+<!-- Script -->
+<script src="script.js"></script>
+</body>
+</html>

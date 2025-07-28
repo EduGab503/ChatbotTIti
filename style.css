@@ -1,0 +1,442 @@
+/* === FONDO GENERAL === */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background-image: url('images/fondo1.jpg'); /* Imagen de fondo personalizada */
+    background-size: cover; /* Cubre toda la pantalla */
+    background-attachment: fixed; /* Fondo fijo al hacer scroll */
+    color: #7e0058;
+    min-height: 100vh;
+}
+
+/* === HERO SECTION === */
+.hero {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    text-align: center;
+    padding: 40px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 800;
+}
+
+.logo {
+    width: 240px;
+    height: auto;
+    transition: transform 0.5s ease-in-out;
+}
+
+.floating {
+    animation: floating 2s ease-in-out infinite;
+}
+
+@keyframes floating {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+.tagline {
+    color: #d4a3df;
+    font-size: 18px;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+/* === CUADRO DE BIENVENIDA === */
+.intro-text {
+    position: center;
+    top: 100px;
+    width: 100%;
+    max-width: 500px;
+    text-align: center;
+    padding: 15px;
+    background-color: #ffe6fa;
+    border-radius: 15px;
+    margin: 20px auto;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    animation: fadeInUp 1s ease;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* === CONTENEDOR DEL CHATBOT === */
+.chat-container {
+    position: relative;
+    max-width: 500px;
+    width: 100%;
+    margin: 180px auto 20px auto; /* Ajustado para no solaparse con el intro */
+    background-color: #ffffff;
+    border: 2px solid #e8bbff;
+    border-radius: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    z-index: 1;
+}
+
+.chat-header {
+    background-color: #e8bbff;
+    color: #4a148c;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 15px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+/* === CONTENEDOR DEL CHAT (Mensajes) === */
+#chat-box {
+    height: 300px; /* Altura fija del cuadro de chat */
+    max-height: 300px; /* Asegura que no exceda esta altura */
+    overflow-y: auto; /* Agrega scroll vertical cuando sea necesario */
+    padding: 10px;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    background-color: #fdf6ff; /* Color de fondo suave */
+    margin-bottom: 10px; /* Espacio antes del input */
+}
+
+/* Opcional: Para mejorar la apariencia de la barra de scroll */
+#chat-box::-webkit-scrollbar {
+    width: 8px; /* Ancho de la barra de scroll en navegadores Webkit (Chrome, Safari) */
+}
+
+#chat-box::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Color del fondo de la barra de scroll */
+    border-radius: 10px;
+}
+
+#chat-box::-webkit-scrollbar-thumb {
+    background: #c5a8d8; /* Color del "pulgar" de la barra de scroll */
+    border-radius: 10px;
+}
+
+#chat-box::-webkit-scrollbar-thumb:hover {
+    background: #9d4edd; /* Color del "pulgar" al pasar el mouse */
+}
+
+/* === MENSAJES EN EL CHAT === */
+.bot-message {
+    background-color: #f3e6fb;
+    color: #4a148c;
+    padding: 10px;
+    border-radius: 15px;
+    margin: 10px 0;
+    word-wrap: break-word;
+}
+
+.user-message {
+    background-color: #d9ffd6;
+    color: #005700;
+    padding: 10px;
+    border-radius: 15px;
+    margin: 10px 0;
+    word-wrap: break-word;
+}
+
+.speak-button {
+    font-size: 12px;
+    cursor: pointer;
+    color: #7a2e8c;
+    user-select: none;
+}
+
+.speak-button:hover {
+    color: #ff99e6;
+    text-shadow: 0 0 5px #ffccf2;
+}
+
+/* === BOTÓN PARA ENVIAR MENSAGE === */
+.input-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.input-group input {
+    width: 80%;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #8840ac;
+    border-radius: 20px;
+    outline: none;
+}
+
+.input-group button {
+    padding: 10px 15px;
+    background-color: #e8bbff;
+    color: #4a148c;
+    border: none;
+    border-radius: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.input-group button:hover {
+    background-color: #dabaff;
+    transform: scale(1.05);
+}
+
+/* === BOTÓN GLOBAL DE VOZ === */
+#toggleVoiceBtn {
+    position: fixed;
+    bottom: 100px;
+    right: 20px;
+    background-color: #ffccf2;
+    color: #4a148c;
+    border: none;
+    padding: 12px 16px;
+    font-size: 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    z-index: 1000;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease;
+}
+
+#toggleVoiceBtn:hover {
+    transform: scale(1.05);
+}
+
+/* === MENÚ DESPLEGABLE DE PALABRAS CLAVE (IZQUIERDA) === */
+.menu-palabras-btn {
+    position: fixed;
+    left: 20px;
+    top: 100px;
+    background-color: #ffccf2;
+    color: #4a148c;
+    border: none;
+    padding: 12px 16px;
+    font-size: 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    z-index: 1000;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease;
+}
+
+.menu-palabras-btn:hover {
+    transform: scale(1.05);
+}
+
+.menu-palabras-contenido {
+    position: fixed;
+    left: 20px;
+    top: 170px;
+    width: 250px;
+    max-height: 300px;
+    overflow-y: auto;
+    background-color: #fdf6ff;
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    display: none;
+    flex-direction: column;
+    padding: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 999;
+}
+
+.menu-palabras-contenido h4 {
+    margin-top: 0;
+    font-size: 16px;
+    color: #4a148c;
+}
+
+.menu-palabras-contenido ul {
+    list-style-type: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+.menu-palabras-contenido li {
+    padding: 5px 0;
+    color: #4a148c;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    padding-left: 10px;
+    border-radius: 10px;
+}
+
+.menu-palabras-contenido li:hover {
+    background-color: #ffd6f4;
+}
+
+.menu-palabras-contenido li:nth-child(even) {
+    color: #5d2b7d;
+}
+
+/* === MENÚ DE HISTORIAS COMPLETADAS (DERECHA) === */
+.historias-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #ffccf2;
+    color: #4a148c;
+    border: none;
+    padding: 12px 16px;
+    font-size: 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    z-index: 1000;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease;
+}
+
+.historias-btn:hover {
+    transform: scale(1.05);
+}
+
+.historias-menu {
+    position: fixed;
+    bottom: 70px;
+    right: 20px;
+    background-color: #fdf6ff;
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    width: 250px;
+    max-height: 300px;
+    overflow-y: auto;
+    display: none;
+    flex-direction: column;
+    padding: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 999;
+}
+
+.historias-menu h4 {
+    margin: 0 0 10px 0;
+    font-size: 16px;
+    color: #4a148c;
+}
+
+.historias-menu ul {
+    list-style-type: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+.historias-menu li {
+    padding: 5px 0;
+    color: #4a148c;
+}
+
+.historias-menu li::before {
+    content: "◻ ";
+    margin-right: 5px;
+    color: #aaa;
+}
+
+.historias-menu li.completada::before {
+    content: "✔ ";
+    color: green;
+}
+
+/* === BOTONES INTERACTIVOS === */
+.option-button {
+    display: inline-block;
+    margin: 5px;
+    padding: 8px 16px;
+    background-color: #ffccf2;
+    color: #4a148c;
+    border: none;
+    border-radius: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.option-button:hover {
+    background-color: #ffb3ec;
+    transform: scale(1.05);
+}
+
+/* === EFECTOS VISUALES OPCIONALES === */
+.slide-in {
+    animation: slideIn 0.5s ease;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* === LISTA DE RECETAS Y RESPUESTAS === */
+.boton-receta,
+.boton-historia,
+.boton-juego {
+    background-color: #e8bbff;
+    border: none;
+    padding: 10px 15px;
+    margin: 5px 0;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.boton-receta:hover,
+.boton-historia:hover,
+.boton-juego:hover {
+    background-color: #dabaff;
+    transform: scale(1.05);
+}
+
+/* === MODAL PARA JUEGO === */
+#modalJuego {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    background: rgba(0,0,0,0.6);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+}
+
+#modalJuego[style*="flex"] {
+    display: flex !important;
+}
+
+/* === FONDOS === */
+#Fondos {
+  position: fixed;
+  bottom: 10px;
+  background-color: rgba(253, 150, 253, 0.986);
+  padding: 10px;
+  border-radius: 15px;
+  box-shadow: 0 0 10px #999;
+  z-index: 999;
+}
+
+#Fondos button {
+  margin: 5px;
+  padding: 8px 12px;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 8px;
+  background-color: #880688;
+  border: none;
+  transition: 0.5s;
+}
+
+#Fondos button:hover {
+    background-color: #640032;
+}

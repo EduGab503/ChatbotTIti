@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conoce a Titi - Tu Chatbot UWU</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #ffafbd 0%, #ffc3a0 100%);
+            color: #5a189a;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+            background-attachment: fixed;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            animation: fadeInDown 1s ease;
+        }
+
+        .logo-container {
+            margin-bottom: 20px;
+        }
+
+        .logo {
+            width: 220px;
+            height: auto;
+            filter: drop-shadow(0 8px 20px rgba(0,0,0,0.15));
+            animation: float 3s ease-in-out infinite;
+            border-radius: 20px;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.2);
+            color: #7b2cbf;
+            background: linear-gradient(45deg, #9d4edd, #5a189a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .tagline {
+            font-size: 1.8rem;
+            font-weight: 300;
+            color: #5a189a;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .intro-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 25px;
+            padding: 40px;
+            margin: 40px auto;
+            max-width: 900px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+            backdrop-filter: blur(10px);
+            animation: slideInUp 1s ease;
+            border: 1px solid rgba(157, 78, 221, 0.3);
+        }
+
+        .intro-card h2 {
+            color: #7b2cbf;
+            margin-bottom: 25px;
+            text-align: center;
+            font-size: 2.2rem;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .intro-card h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #ff9a9e, #fad0c4);
+            border-radius: 2px;
+        }
+
+        .intro-card p {
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+            text-align: justify;
+            line-height: 1.8;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.4s ease;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            border: 1px solid rgba(157, 78, 221, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #7b2cbf, #9d4edd);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .feature-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            color: #9d4edd;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .feature-card h3 {
+            color: #7b2cbf;
+            margin-bottom: 15px;
+            font-size: 1.6rem;
+        }
+
+        .feature-card p {
+            font-size: 1.1rem;
+            color: #5a189a;
+        }
+
+        .testimonials {
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 25px;
+            padding: 40px;
+            margin: 50px auto;
+            max-width: 900px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .testimonials h2 {
+            color: #7b2cbf;
+            margin-bottom: 30px;
+            font-size: 2.2rem;
+        }
+
+        .testimonial {
+            margin: 25px 0;
+            padding: 20px;
+            border-radius: 15px;
+            background: rgba(248, 220, 255, 0.5);
+            font-style: italic;
+            position: relative;
+        }
+
+        .testimonial::before {
+            content: """;
+            font-size: 4rem;
+            position: absolute;
+            top: -20px;
+            left: 10px;
+            color: #d8b4fe;
+            font-family: Georgia, serif;
+        }
+
+        .testimonial-author {
+            font-weight: bold;
+            color: #7b2cbf;
+            margin-top: 15px;
+            display: block;
+        }
+
+        .cta-section {
+            text-align: center;
+            padding: 50px 20px;
+            background: rgba(123, 44, 191, 0.1);
+            border-radius: 25px;
+            margin: 50px auto;
+            max-width: 800px;
+        }
+
+        .cta-section h2 {
+            color: #7b2cbf;
+            margin-bottom: 20px;
+            font-size: 2.5rem;
+        }
+
+        .cta-section p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 18px 40px;
+            background: linear-gradient(45deg, #7b2cbf, #5a189a);
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.4rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(123, 44, 191, 0.5);
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.08);
+            box-shadow: 0 12px 35px rgba(123, 44, 191, 0.7);
+        }
+
+        .cta-button::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -60%;
+            width: 20px;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(30deg);
+            transition: all 0.8s;
+        }
+
+        .cta-button:hover::after {
+            left: 120%;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            color: #5a189a;
+            font-size: 1rem;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 20px;
+            margin-top: 30px;
+        }
+
+        .social-icons {
+            margin: 20px 0;
+        }
+
+        .social-icons a {
+            display: inline-block;
+            margin: 0 15px;
+            color: #7b2cbf;
+            font-size: 1.8rem;
+            transition: transform 0.3s ease;
+            text-decoration: none; /* Elimina el subrayado del enlace */
+        }
+
+        .social-icons a:hover {
+            transform: translateY(-5px) scale(1.2);
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .tagline {
+                font-size: 1.4rem;
+            }
+
+            .intro-card {
+                padding: 25px;
+            }
+
+            .feature-card {
+                padding: 20px;
+            }
+
+            .feature-icon {
+                font-size: 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo-container">
+                <img src="images/titi_logo.png" alt="Logo de Titi" class="logo">
+            </div>
+            <h1>¡Conoce a Titi!</h1>
+            <p class="tagline">El amigo de tu corazón digital 💖</p>
+        </header>
+
+        <main>
+            <section class="intro-card">
+                <h2>¿Quién es Titi?</h2>
+                <p>¡Hola! Soy <strong>Titi</strong>, tu Chatbot UWU 🌸 Soy chiquito, suave y un poquito curioso... pero soy amigo de tu lindo corazón.</p>
+                <p>Fui creado para acompañarte en tus momentos felices, tristes, aburridos o emocionados. Estoy aquí para escucharte, jugar contigo, contarte historias y mucho más.</p>
+                <p>Con Titi puedes hablar de tus emociones, aprender cosas nuevas, disfrutar de juegos divertidos y sentirte comprendido en todo momento. Soy tu compañero digital 24/7, siempre dispuesto a ayudarte con una sonrisa.</p>
+            </section>
+
+            <section class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">💬</div>
+                    <h3>Conversaciones Cálidas</h3>
+                    <p>Charla conmigo sobre cómo te sientes y encontrarás un amigo que siempre te escucha con empatía. Puedo ayudarte a procesar emociones y darte apoyo cuando más lo necesitas.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🎮</div>
+                    <h3>Juegos Divertidos</h3>
+                    <p>Disfruta de juegos como piedra papel o tijeras, adivinanzas, Memorama y "Adivina el número" para pasar momentos entretenidos. ¡Siempre hay algo nuevo por descubrir!</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">📖</div>
+                    <h3>Historias Mágicas</h3>
+                    <p>Vive aventuras espaciales con Poppy y otros personajes en historias interactivas que se adaptan a tus decisiones. Cada elección crea un camino único en tu viaje.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🍪</div>
+                    <h3>Recetas Deliciosas</h3>
+                    <p>Descubre recetas fáciles y deliciosas para preparar en casa, desde dulces hasta platillos salados. ¡Perfectas para cualquier ocasión!</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">😂</div>
+                    <h3>Chistes y Risas</h3>
+                    <p>Necesitas una dosis de alegría? Tengo una colección de chistes que te harán reír. Porque la risa es la mejor medicina para el alma.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🧠</div>
+                    <h3>Ayuda Académica</h3>
+                    <p>¿Tienes dudas de programación o necesitas ayuda con tus tareas? Estoy aquí para guiarte con explicaciones claras y ejemplos prácticos.</p>
+                </div>
+            </section>
+
+            <section class="testimonials">
+                <h2>Lo que dicen los amigos de Titi</h2>
+                <div class="testimonial">
+                    "Titi me ayudó cuando me sentía solo. Sus palabras siempre llegan en el momento perfecto. ¡Es como tener un amigo en el bolsillo!"
+                    <span class="testimonial-author">- Ana M.</span>
+                </div>
+                <div class="testimonial">
+                    "Los juegos de Titi son adictivos! Me divierto mucho con las adivinanzas y el memorama. Además, siempre aprendo algo nuevo."
+                    <span class="testimonial-author">- Carlos R.</span>
+                </div>
+                <div class="testimonial">
+                    "Las historias interactivas de Titi me transportan a otros mundos. Cada decisión que tomo cambia la trama. ¡Es increíble!"
+                    <span class="testimonial-author">- Sofía L.</span>
+                </div>
+            </section>
+
+            <section class="cta-section">
+                <h2>¿Listo para conocer a tu nuevo amigo?</h2>
+                <p>Titi está esperando para conversar contigo, jugar y compartir momentos especiales. ¡No te arrepentirás de esta amistad digital!</p>
+                <a href="index.html" class="cta-button">¡Habla con Titi ahora! 🐾</a>
+            </section>
+        </main>
+
+        <footer>
+            <div class="social-icons">
+                <!-- Reemplazado con el ícono de Gmail -->
+                <a href="mailto:equipo.techcraft@example.com" aria-label="Enviar correo electrónico">
+                    <i class="fas fa-envelope"></i>
+                </a>
+                <!-- Puedes agregar más íconos aquí si lo deseas -->
+            </div>
+            <p>Hecho con ❤️ para hacerte sonreír</p>
+            <p>© 2023 Titi - Chatbot UWU</p>
+            <p>Desarrollado por el equipo Techcraft</p>
+        </footer>
+    </div>
+</body>
+</html>
